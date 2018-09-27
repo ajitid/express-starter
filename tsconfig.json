@@ -1,0 +1,20 @@
+{
+  "version": "2.4.2",
+  "compilerOptions": {
+    "lib": [
+      "es5",
+      "es6"
+    ],
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    // I think `emitDecoratorMetadata` needs `reflect-metadata` package.
+    // @types/node is also not installed as this project isn't using TypeScript itself.
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
