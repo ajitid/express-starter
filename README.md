@@ -1,4 +1,6 @@
 _in progress_
+
+
 todo: 
 use js for typeorm config instead of json
 add info to readme about how to use (+db operations) and deploy 
