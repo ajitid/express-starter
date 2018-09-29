@@ -1,9 +1,12 @@
 const Joi = require('joi')
 const Koi = require('../../utils/koi')
 
-class User {
-  constructor (email, name, password, retypedPassword) {
-
+class Account {
+  constructor (email, name, password) {
+    // const data = {email, name, password} for cleaning and validating
+    this.email = email
+    this.name = name
+    this.password = password
   }
 
   static validate (fields) {
@@ -29,17 +32,17 @@ class User {
   }
 
   static async matchPassword (typedEmail, typedPassword) {
-    typedEmail = User.clean({ email: typedEmail }).email
-    const user = await User.findOne({ where: { email } })
-    if (!user) {
-      return done(null, false)
-    }
-    const hashedPassword = await hashPassword(password, user.password_salt)
-    if (hashedPassword !== user.password) {
-      return done(null, false)
-    }
-    return done(null, user)
+    typedEmail = Account.clean({ email: typedEmail }).email
+    // const user = await User.findOne({ where: { email } })
+    // if (!user) {
+    //   return done(null, false)
+    // }
+    // const hashedPassword = await hashPassword(password, user.password_salt)
+    // if (hashedPassword !== user.password) {
+    //   return done(null, false)
+    // }
+    // return done(null, user)
   }
 }
 
-module.exports = User
+module.exports = Account

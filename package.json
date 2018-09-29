@@ -18,7 +18,7 @@
     "lint-fix": "./node_modules/.bin/standard --fix",
     "db:mig:gen": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate",
     "db:mig": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run",
-    "db:m2": "npm run db:mig:gen && npm run db:mig"
+    "db:m2": "npm run db:mig:gen -- -n mig && npm run db:mig"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -30,6 +30,7 @@
     "passport-local": "^1.0.0",
     "pg": "^7.4.3",
     "pug": "^2.0.3",
+    "reflect-metadata": "^0.1.12",
     "ts-node": "^7.0.1",
     "typeorm": "^0.2.7",
     "typescript": "^3.0.3",

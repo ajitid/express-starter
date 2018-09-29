@@ -6,7 +6,7 @@ const Youch = require('youch')
 const youchTerminal = require('youch-terminal')
 
 if (process.env.NODE_ENV !== 'production') {
-  const dotenvResult = require('dotenv').config()
+  const dotenvResult = require('dotenv').config({ path: path.join(path.dirname(__dirname), '.env') })
   if (dotenvResult.error) {
     throw dotenvResult.error
   }
@@ -27,7 +27,7 @@ app.use(
 )
 
 // FIXME
-// require('./db')
+require('./db')
 
 // app.use(passport.initialize())
 // app.use(passport.session())
@@ -41,7 +41,7 @@ module.exports = app
 // added fn() below to check youch, remove it
 app.get('/', (req, res) => res.send('live!')) // TODO comment this out on adding index.pug
 // FIXME
-// require('./routes')
+require('./routes')
 
 // app.use(errorReporter())
 // youch for error handling
@@ -63,10 +63,7 @@ app.use((err, req, res, next) => {
   next(err)
 })
 
-// const authRoute = require("./routes/auth");
-// app.use("/user", userRoute);
-// TODO ^ use index.js in routes/ to merge routes instead
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(path.dirname(__dirname), 'public')))
 
 const server = app.listen(PORT, () => {
   console.log(`listening on ${PORT}`)

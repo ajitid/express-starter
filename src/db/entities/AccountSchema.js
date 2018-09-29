@@ -1,9 +1,8 @@
 const { EntitySchema } = require('typeorm')
-const User = require('../models/User')
+const Account = require('../models/Account')
 
 module.exports = new EntitySchema({
-  name: 'users',
-  target: User,
+  target: Account,
   columns: {
     email: {
       primary: true,
