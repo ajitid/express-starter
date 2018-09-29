@@ -9,6 +9,9 @@ class BaseSchema {
   }
 
   clean(value) {
+    // FIXME
+    // if(value === undefined || value === null)
+    //   return null
     return this.cleaners.reduce((prevValue, cleaner) => cleaner(prevValue), value);
   }
 }
