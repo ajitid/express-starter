@@ -22,6 +22,7 @@ TODO:
 - [ ] https://github.com/ekifox/express-powerful-router
 - [ ] check if migrations folder creation in necessary
 - [ ] token based auth
+- [ ] probably replace express with koajs, and evaluate TS (also evaluate nestjs)
 - [ ] solve FIXMEs and TODOs
 
 ## How to start?
