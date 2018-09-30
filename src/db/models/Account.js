@@ -1,7 +1,11 @@
 const Joi = require('joi')
+// const { getManager } = require('typeorm')
 
 const Koi = require('../../utils/koi')
 const { hashString, makeSalt } = require('../../utils/encrypt')
+const ResourceCreationError = require('../../utils/errors/ResourceCreationError')
+
+// const db = getManager()
 
 class Account {
   // if using TS, make ctor private <- nooo as this will create issue in making user
@@ -20,10 +24,13 @@ class Account {
     let fields = { email, name, password }
     fields = Account.clean(fields)
     const validated = Account.validate(fields)
-    if (!validated.error) {
-      const { password: hashedPassword, passwordSalt } = await Account.getEncryptedFields(password)
-      account = new Account(fields.email, fields.name, hashedPassword, passwordSalt)
+
+    if (validated.error) {
+      throw new ResourceCreationError(Account.name, 'fails validation')
     }
+
+    const { password: hashedPassword, passwordSalt } = await Account.getEncryptedFields(password)
+    account = new Account(fields.email, fields.name, hashedPassword, passwordSalt)
     return account
   }
 

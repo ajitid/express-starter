@@ -9,21 +9,17 @@ If you need StandardJS for VS Code, then launch VS Code's Quick Open using <kbd>
 _Work in Progress_
 
 TODO:
-- [ ] change account -> user in model, entity, route and server.js
 - [ ] move logic to controllers
-- [ ] use js for typeorm config instead of json and fix passport connection
-- [ ] use typescript in project
-- [ ] add info to readme about how to use (+db operations) and deploy
-- [ ] prettier with js-standard??
 - [ ] make index a pug file point to youch error
 - [ ] add 404 pug
-- [ ] async error handler by decorator (yep ts) or express-async-errors
-- [ ] evaluate koajs and https://github.com/adonisjs. Adonis looks promising out of all solutions, but check if its modules are pluggable or not.
 - [ ] https://github.com/ekifox/express-powerful-router
-- [ ] check if migrations folder creation in necessary
 - [ ] token based auth
-- [ ] probably replace express with koajs, and evaluate TS (also evaluate nestjs)
 - [ ] solve FIXMEs and TODOs
+- [ ] async error handler by decorator (yep ts) or express-async-errors
+- [ ] prettier with js-standard??
+- [ ] use typescript in project
+- [ ] add info to readme about how to use (+db operations) and deploy
+- [ ] probably replace express with koajs, and evaluate TS (also evaluate nestjs)
 
 ## How to start?
 1. You'll need to make `.env` file at root of your project with the following keys and your own values:
