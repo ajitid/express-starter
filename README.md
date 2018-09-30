@@ -21,6 +21,8 @@ TODO:
 - [ ] evaluate koajs and https://github.com/adonisjs. Adonis looks promising out of all solutions, but check if its modules are pluggable or not.
 - [ ] https://github.com/ekifox/express-powerful-router
 - [ ] check if migrations folder creation in necessary
+- [ ] token based auth
+- [ ] solve FIXMEs and TODOs
 
 ## How to start?
 1. You'll need to make `.env` file at root of your project with the following keys and your own values:
