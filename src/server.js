@@ -39,9 +39,15 @@ app.set('view engine', 'pug')
 module.exports = app
 
 // added fn() below to check youch, remove it
-app.get('/', (req, res) => res.send('live!')) // TODO comment this out on adding index.pug
+app.get('/', (req, res) => res.render('index')) // TODO comment this out on adding index.pug
 // FIXME
 require('./routes')
+
+app.use(express.static(path.join(path.dirname(__dirname), 'public')))
+
+app.use(function (req, res, next) {
+  return res.status(404).render('notFound', { pageTitle: 'Not Found' })
+})
 
 // app.use(errorReporter())
 // youch for error handling
@@ -62,8 +68,6 @@ app.use((err, req, res, next) => {
   }
   next(err)
 })
-
-app.use(express.static(path.join(path.dirname(__dirname), 'public')))
 
 const server = app.listen(PORT, () => {
   console.log(`listening on ${PORT}`)

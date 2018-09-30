@@ -9,11 +9,8 @@ If you need StandardJS for VS Code, then launch VS Code's Quick Open using <kbd>
 _Work in Progress_
 
 TODO:
-- [ ] move logic to controllers
-- [ ] make index a pug file point to youch error
-- [ ] add 404 pug
 - [ ] https://github.com/ekifox/express-powerful-router
-- [ ] token based auth
+- [ ] token based auth, login failed json
 - [ ] solve FIXMEs and TODOs
 - [ ] async error handler by decorator (yep ts) or express-async-errors
 - [ ] prettier with js-standard??
@@ -29,7 +26,7 @@ DB_URI = postgres://username:password@localhost/proj_db
 COOKIE_KEYS = cnkjdFB3FRGtrAhtHGyh2fregt3VGK43defrgt25gt3f
 PORT = 4000
 ```
-You may need to go to `<project_root>/ormconfig.json` and add `"ssl": true`. If you are on local development database, probably don't. If you are using Heroku Postgres, then you should.
+You may need to go to `<project_root>/ormconfig.js` and add `"ssl": true`. If you are on local development database, probably don't. If you are using Heroku Postgres, then you should.
 
 2. Migration: Schema for a simple user is already defined, but that structure of table is not present in the database. We first generate the migrations and then migrate it to database. To do both, use `npm run db:m2`. (Make sure your database (server) is up before running this command.) Also make sure you are happy with the names at `db/models/*.ts` as name of these files actually end up being table names. (TODO myself: check ways to override it, cause model names aren't plural but table names should be)
 

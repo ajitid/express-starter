@@ -1,0 +1,8 @@
+extends partials/base.pug
+include elements/button.pug
+
+block content
+  main.flex.justify-center
+    div.mt-4
+      h1.font-light.text-4xl.mb-5.text-center All set!
+      +button("GitHub Repo", "https://github.com/ajitid/express-starter")
