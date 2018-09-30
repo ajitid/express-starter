@@ -19,8 +19,8 @@ class Account {
     let account = null
     let fields = { email, name, password }
     fields = Account.clean(fields)
-    const areFieldsValid = Account.validate(fields)
-    if (areFieldsValid) {
+    const validated = Account.validate(fields)
+    if (!validated.error) {
       const { password: hashedPassword, passwordSalt } = await Account.getEncryptedFields(password)
       account = new Account(fields.email, fields.name, hashedPassword, passwordSalt)
     }

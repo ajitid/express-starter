@@ -26,8 +26,15 @@ router.post('/logout', async (req, res) => {
 router.post('/signup', async (req, res) => {
   const { email, name, password } = req.body
   const account = await Account.createAccount(email, name, password)
+  if (account === null) {
+    return res.status(400).json({
+      // FIXME add errors to json
+      // error:,
+      created: false
+    })
+  }
   db.save(account)
-  return res.send('done')
+  return res.send({ error: null, created: true })
   // FIXME if error, respond with proper http code
 })
 
