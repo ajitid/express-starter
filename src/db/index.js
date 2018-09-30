@@ -5,18 +5,12 @@ const entities = require('./entities')
 // FIXME needs await, take `type` from .env
 
 createConnection({
-  type: 'postgres',
+  type: process.env.DB_TYPE,
   url: process.env.DB_URI,
   entities
 }).then(connection => {
   if (connection.isConnected) {
     console.log('connected to database')
-
-    module.exports = {
-      dbConn: connection,
-      dbMgr: connection.manager,
-      dbSave: connection.manager.save
-    }
   }
 }).catch(err => {
   console.log("couldn't connect to database")

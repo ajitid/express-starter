@@ -25,6 +25,7 @@ TODO:
 ## How to start?
 1. You'll need to make `.env` file at root of your project with the following keys and your own values:
 ```
+DB_TYPE = postgres
 DB_URI = postgres://username:password@localhost/proj_db
 COOKIE_KEYS = cnkjdFB3FRGtrAhtHGyh2fregt3VGK43defrgt25gt3f
 PORT = 4000

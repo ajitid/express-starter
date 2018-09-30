@@ -1,4 +1,4 @@
 const app = require('../server')
-const authRoute = require('./user')
+const accountRoute = require('./account')
 
-app.use('/user', authRoute)
+app.use('/account', accountRoute)

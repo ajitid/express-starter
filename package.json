@@ -13,7 +13,7 @@
     ]
   },
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "nodemon src/server.js",
     "lint": "./node_modules/.bin/standard",
     "lint-fix": "./node_modules/.bin/standard --fix",
     "db:mig:gen": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate",
@@ -30,7 +30,6 @@
     "passport-local": "^1.0.0",
     "pg": "^7.4.3",
     "pug": "^2.0.3",
-    "reflect-metadata": "^0.1.12",
     "ts-node": "^7.0.1",
     "typeorm": "^0.2.7",
     "typescript": "^3.0.3",

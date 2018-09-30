@@ -1,14 +1,14 @@
 const bcrypt = require('bcryptjs')
 
-async function hashPassword (password, salt) {
-  const hashedPassword = await new Promise((resolve, reject) => {
-    bcrypt.hash(password, salt, function (err, hash) {
+async function hashString (string, salt) {
+  const hashedString = await new Promise((resolve, reject) => {
+    bcrypt.hash(string, salt, function (err, hash) {
       if (err) reject(err)
       resolve(hash)
     })
   })
 
-  return hashedPassword
+  return hashedString
 }
 
 async function makeSalt (saltRounds = 10) {
@@ -29,6 +29,6 @@ async function makeSalt (saltRounds = 10) {
 // }
 
 module.exports = {
-  hashPassword,
+  hashString,
   makeSalt
 }

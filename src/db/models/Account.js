@@ -1,12 +1,39 @@
 const Joi = require('joi')
+
 const Koi = require('../../utils/koi')
+const { hashString, makeSalt } = require('../../utils/encrypt')
 
 class Account {
-  constructor (email, name, password) {
-    // const data = {email, name, password} for cleaning and validating
+  // if using TS, make ctor private <- nooo as this will create issue in making user
+  constructor (email, name, password, passwordSalt) {
+    // FIXME this is stopping migrations, as well as writing entities @ db/index.js
+    // fields = Account.clean(fields)
+    // how to handle errors from the above two
     this.email = email
     this.name = name
     this.password = password
+    this.password_salt = passwordSalt
+  }
+
+  static async createAccount (email, name, password) {
+    let account = null
+    let fields = { email, name, password }
+    fields = Account.clean(fields)
+    const areFieldsValid = Account.validate(fields)
+    if (areFieldsValid) {
+      const { password: hashedPassword, passwordSalt } = await Account.getEncryptedFields(password)
+      account = new Account(fields.email, fields.name, hashedPassword, passwordSalt)
+    }
+    return account
+  }
+
+  static clean (fields) {
+    const schema = {
+      email: Koi.string().trim(),
+      name: Koi.string().trim()
+    }
+    // no async await for koi :/
+    return Koi.clean(fields, schema)
   }
 
   static validate (fields) {
@@ -17,31 +44,20 @@ class Account {
     })
     // FIME joi.validate *maybe* async, check if tru
     // and evaluate v8n (it is imported at the top bu)
-    const result = Joi.validate(fields, schema)
+    return Joi.validate(fields, schema)
     // throw an error or do something similar to stop making an object
     // if no error return it
   }
 
-  static clean (fields) {
-    const schema = {
-      email: Koi.string().trim(),
-      name: Koi.string().trim()
+  static async getEncryptedFields (password, salt) {
+    if (!salt) {
+      salt = await makeSalt()
     }
-    // no async await for koi :/
-    const result = Koi.clean(fields, schema)
-  }
-
-  static async matchPassword (typedEmail, typedPassword) {
-    typedEmail = Account.clean({ email: typedEmail }).email
-    // const user = await User.findOne({ where: { email } })
-    // if (!user) {
-    //   return done(null, false)
-    // }
-    // const hashedPassword = await hashPassword(password, user.password_salt)
-    // if (hashedPassword !== user.password) {
-    //   return done(null, false)
-    // }
-    // return done(null, user)
+    password = await hashString(password, salt)
+    return {
+      password,
+      passwordSalt: salt
+    }
   }
 }
 

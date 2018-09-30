@@ -1,29 +1,31 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+const { getManager } = require('typeorm')
 
-const User = require('../db/models/index').user
-const { hashPassword } = require('../utils')
+const Account = require('../db/models/Account')
 
-passport.serializeUser(function (user, done) {
-  return done(null, user.email)
+const db = getManager()
+
+passport.serializeUser(function (account, done) {
+  return done(null, account.email)
 })
 
 passport.deserializeUser(async function (email, done) {
-  const user = await User.findOne({ where: { email } })
-  return done(null, user)
+  const account = await db.findOne(Account, { email })
+  return done(null, account)
 })
 
 passport.use(new LocalStrategy(
   { usernameField: 'email' },
   async function (email, password, done) {
-    const user = await User.findOne({ where: { email } })
-    if (!user) {
+    const account = await db.findOne(Account, { email })
+    if (!account) {
       return done(null, false)
     }
-    const hashedPassword = await hashPassword(password, user.password_salt)
-    if (hashedPassword !== user.password) {
+    const { password: encryptedTypedPassword } = await Account.getEncryptedFields(password, account.passwordSalt)
+    if (account.password === encryptedTypedPassword) {
       return done(null, false)
     }
-    return done(null, user)
+    return done(null, account)
   }
 ))

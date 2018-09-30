@@ -29,9 +29,9 @@ app.use(
 // FIXME
 require('./db')
 
-// app.use(passport.initialize())
-// app.use(passport.session())
-// require('./handlers/passport')
+app.use(passport.initialize())
+app.use(passport.session())
+require('./handlers/passport')
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')

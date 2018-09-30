@@ -1,18 +1,18 @@
 class BaseSchema {
-  constructor() {
+  constructor () {
     this.cleaners = []
   }
 
-  ownFunction(fn) {
-    this.cleaners.push(fn);
+  ownFunction (fn) {
+    this.cleaners.push(fn)
     return this
   }
 
-  clean(value) {
+  clean (value) {
     // FIXME
     // if(value === undefined || value === null)
     //   return null
-    return this.cleaners.reduce((prevValue, cleaner) => cleaner(prevValue), value);
+    return this.cleaners.reduce((prevValue, cleaner) => cleaner(prevValue), value)
   }
 }
 
