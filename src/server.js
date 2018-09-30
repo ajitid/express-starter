@@ -43,13 +43,12 @@ app.get('/', (req, res) => res.render('index')) // TODO comment this out on addi
 // FIXME
 require('./routes')
 
-app.use(express.static(path.join(path.dirname(__dirname), 'public')))
+app.use('/static', express.static(path.join(path.dirname(__dirname), 'static')))
 
 app.use(function (req, res, next) {
   return res.status(404).render('notFound', { pageTitle: 'Not Found' })
 })
 
-// app.use(errorReporter())
 // youch for error handling
 app.use((err, req, res, next) => {
   if (err && process.env.NODE_ENV !== 'production' && !res.headersSent) {

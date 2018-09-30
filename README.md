@@ -31,7 +31,7 @@ You may need to go to `<project_root>/ormconfig.js` and add `"ssl": true`. If yo
 2. Migration: Schema for a simple user is already defined, but that structure of table is not present in the database. We first generate the migrations and then migrate it to database. To do both, use `npm run db:m2`. (Make sure your database (server) is up before running this command.) Also make sure you are happy with the names at `db/models/*.ts` as name of these files actually end up being table names. (TODO myself: check ways to override it, cause model names aren't plural but table names should be)
 
 2. You are all set! Use `npm run dev` to run your Express application.
-3. Refer to `<project_root>/routes/user.js` to see all URLs and JSON data that you need to send to create, login, logout, and to check authentication status of a user.
+3. Refer to `<project_root>/src/routes/user.js` to see all URLs and JSON data that you need to send to create, login, logout, and to check authentication status of a user.
 
 ## Description
-- `public/`: store your static files like images and fonts and 404, 500 page used in your website, but not user related data like users' profile pic
+- `<project_root>/static/`: store your static files like images and fonts and 404, 500 page used in your website, but not user related data like users' profile pic
