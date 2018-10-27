@@ -6,7 +6,7 @@ Express being a micro-framework demands a lot of setup before making it usable. 
 
 If you need StandardJS for VS Code, then launch VS Code's Quick Open using <kbd>Ctrl</kbd> + <kbd>P</kbd>, paste `ext install chenxsan.vscode-standardjs`, and press enter.
 
-_Work in Progress_
+_This is a work in progress. So it doesn't delivers everything it promises._
 
 TODO:
 - [ ] https://github.com/ekifox/express-powerful-router
